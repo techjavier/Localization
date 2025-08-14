@@ -31,7 +31,7 @@ struct DemoRegion: Hashable {
 }
 
 struct DemoItem: Identifiable, Hashable {
-    let id = UUID()
+    let id: UUID = UUID()
     let keyId: String
     let type: DemoType
     let title: String
@@ -40,6 +40,14 @@ struct DemoItem: Identifiable, Hashable {
     let plural: DemoPlural?
     let region: DemoRegion?
     let placeholders: [String]
+
+    static func == (lhs: DemoItem, rhs: DemoItem) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 // MARK: - Seed
