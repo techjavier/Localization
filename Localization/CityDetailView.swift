@@ -92,6 +92,7 @@ struct CityDetailView: View {
                     // TODO: Plug real FX API
                 }
                 Text(String(localized: "landmarks.section", defaultValue: "Landmarks", comment: "Landmarks section header"))
+
                     .font(.title2)
                 ForEach(city.landmarks) { landmark in
                     NavigationLink {
@@ -103,6 +104,7 @@ struct CityDetailView: View {
                         }
                     }
                 }
+              
                 VStack(alignment: .leading, spacing: 8) {
                     Text(greeting)
                     Text(favoritesLine).accessibilityLabel(String(localized: "favorites.count.accessibility", defaultValue: "Favorites Count Line", comment: "Accessibility label for favorites line"))
