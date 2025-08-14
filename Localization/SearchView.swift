@@ -7,7 +7,7 @@ struct SearchView: View {
         let res = viewModel.results()
         List {
             if !res.countries.isEmpty {
-                Section(String(localized: "Countries", comment: "Countries results")) {
+                Section(String(localized: "results.countries", defaultValue: "Countries", comment: "Countries results")) {
                     ForEach(res.countries) { country in
                         NavigationLink(country.name) {
                             CityListView(country: country)
@@ -16,7 +16,7 @@ struct SearchView: View {
                 }
             }
             if !res.cities.isEmpty {
-                Section(String(localized: "Cities", comment: "Cities results")) {
+                Section(String(localized: "results.cities", defaultValue: "Cities", comment: "Cities results")) {
                     ForEach(res.cities) { city in
                         if let country = viewModel.countries.first(where: { $0.cities.contains(city) }) {
                             NavigationLink(city.name) {
@@ -27,7 +27,7 @@ struct SearchView: View {
                 }
             }
             if !res.landmarks.isEmpty {
-                Section(String(localized: "Landmarks", comment: "Landmarks results")) {
+                Section(String(localized: "results.landmarks", defaultValue: "Landmarks", comment: "Landmarks results")) {
                     ForEach(res.landmarks) { landmark in
                         NavigationLink(landmark.name) {
                             LandmarkDetailView(landmark: landmark)
@@ -36,7 +36,7 @@ struct SearchView: View {
                 }
             }
         }
-        .navigationTitle(String(localized: "Search", comment: "Search navigation title"))
-        .searchable(text: $viewModel.query, prompt: String(localized: "Search places", comment: "Search placeholder"))
+        .navigationTitle(String(localized: "nav.search", defaultValue: "Search", comment: "Search navigation title"))
+        .searchable(text: $viewModel.query, prompt: String(localized: "search.prompt", defaultValue: "Search places", comment: "Search placeholder"))
     }
 }

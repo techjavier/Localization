@@ -5,11 +5,11 @@ struct ExploreView: View {
 
     var body: some View {
         List(viewModel.continents, id: \.self) { continent in
-            NavigationLink(String(localized: continent, comment: "Continent name")) {
+            NavigationLink(continent) {
                 CountryListView(continent: continent, countries: viewModel.countries(in: continent))
             }
         }
-        .navigationTitle(String(localized: "Explore", comment: "Explore navigation title"))
+        .navigationTitle(String(localized: "nav.explore", defaultValue: "Explore", comment: "Explore navigation title"))
     }
 }
 
