@@ -7,13 +7,13 @@ enum DemoType: String {
     var label: String { rawValue.capitalized }
 }
 
-struct DemoPlural {
+struct DemoPlural: Hashable {
     var zero: String?
     var one: String?
     var other: String
 }
 
-struct DemoRegion {
+struct DemoRegion: Hashable {
     var base: String
     var us: String?
     var gb: String?
@@ -30,8 +30,8 @@ struct DemoRegion {
     }
 }
 
-struct DemoItem: Identifiable {
-    let id = UUID()
+struct DemoItem: Identifiable, Hashable {
+    let id: UUID = UUID()
     let keyId: String
     let type: DemoType
     let title: String
@@ -40,6 +40,14 @@ struct DemoItem: Identifiable {
     let plural: DemoPlural?
     let region: DemoRegion?
     let placeholders: [String]
+
+    static func == (lhs: DemoItem, rhs: DemoItem) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 // MARK: - Seed
