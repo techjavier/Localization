@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct LocalizationApp: App {
+    @StateObject private var settings = AppSettings()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CatalogListView()
+                .environmentObject(settings)
         }
     }
 }
